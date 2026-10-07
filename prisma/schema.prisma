@@ -1,0 +1,214 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  MEETING_SCHEDULED
+  BOOKED
+  ARCHIVED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  subtitle    String?
+  description String
+  coverImage  String
+  heroImage   String?
+  order       Int       @default(0)
+  projects    Project[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Project {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  clientName  String?
+  location    String
+  eventDate   DateTime
+  summary     String
+  featured    Boolean        @default(false)
+  categoryId  String
+  category    Category       @relation(fields: [categoryId], references: [id])
+  photos      Photo[]
+  chapters    StoryChapter[]
+  videos      Video[]
+  testimonial Testimonial?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([categoryId])
+  @@index([slug])
+}
+
+model StoryChapter {
+  id          String   @id @default(cuid())
+  title       String
+  order       Int
+  description String?
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  photos      Photo[]
+
+  @@index([projectId])
+}
+
+model Photo {
+  id           String        @id @default(cuid())
+  url          String
+  blurDataUrl  String?
+  altText      String
+  width        Int           @default(1600)
+  height       Int           @default(1067)
+  aspectRatio  String?       @default("landscape") // portrait, landscape, square
+  isCover      Boolean       @default(false)
+  exifCamera   String?
+  exifLens     String?
+  exifAperture String?
+  exifShutter  String?
+  exifIso      String?
+  order        Int           @default(0)
+  projectId    String?
+  project      Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  chapterId    String?
+  chapter      StoryChapter? @relation(fields: [chapterId], references: [id], onDelete: SetNull)
+  createdAt    DateTime      @default(now())
+
+  @@index([projectId])
+  @@index([chapterId])
+}
+
+model Video {
+  id          String   @id @default(cuid())
+  title       String
+  url         String
+  posterUrl   String?
+  aspectRatio String   @default("16:9")
+  projectId   String?
+  project     Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model Album {
+  id          String      @id @default(cuid())
+  title       String
+  subtitle    String?
+  coverImage  String
+  material    String?     @default("Full-Grain Italian Leather")
+  pagesCount  Int         @default(50)
+  description String
+  spreads     AlbumPage[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model AlbumPage {
+  id         String   @id @default(cuid())
+  pageNumber Int
+  imageUrl   String
+  title      String?
+  caption    String?
+  albumId    String
+  album      Album    @relation(fields: [albumId], references: [id], onDelete: Cascade)
+
+  @@index([albumId])
+}
+
+model TeamMember {
+  id                String   @id @default(cuid())
+  name              String
+  role              String
+  bio               String
+  portrait          String
+  yearsOfExperience Int      @default(5)
+  gear              String[]
+  order             Int      @default(0)
+  createdAt         DateTime @default(now())
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  year        String
+  title       String
+  issuer      String
+  description String
+  badgeUrl    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Testimonial {
+  id         String   @id @default(cuid())
+  clientName String
+  eventType  String
+  location   String
+  date       String
+  quote      String
+  rating     Int      @default(5)
+  projectId  String?  @unique
+  project    Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+}
+
+model Enquiry {
+  id           String        @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  serviceType  String
+  eventDate    DateTime?
+  location     String?
+  guestCount   Int?
+  includeVideo Boolean       @default(false)
+  includeAlbum Boolean       @default(false)
+  message      String
+  status       EnquiryStatus @default(NEW)
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  coverImage  String
+  category    String
+  readTime    String   @default("5 min read")
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+}

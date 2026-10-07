@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
+@theme {
+  /* Warm Natural Editorial Palette */
+  --color-cream: #F5F1E8;
+  --color-cream-paper: #FAF7F0;
+  --color-forest: #2F4A3A;
+  --color-forest-dark: #1F3327;
+  --color-forest-light: #3F5E4B;
+  --color-earth: #765B43;
+  --color-earth-light: #8E7055;
+  --color-sand: #D8C9B3;
+  --color-sand-light: #EBE3D7;
+  --color-charcoal: #252525;
+  --color-charcoal-muted: #5C5850;
+
+  /* Theme tokens & backward-compatibility mappings */
+  --color-studio-cream: #F5F1E8;
+  --color-studio-paper: #FAF7F0;
+  --color-studio-black: #252525;
+  --color-studio-dark: #35332F;
+  --color-studio-card: #FAF7F0;
+  --color-studio-elevated: #FFFFFF;
+  --color-studio-border: rgba(118, 91, 67, 0.18);
+  --color-studio-border-hover: rgba(47, 74, 58, 0.35);
+  
+  --color-studio-gold: #2F4A3A;
+  --color-studio-gold-light: #3F5E4B;
+  --color-studio-gold-dark: #1F3327;
+  
+  --color-studio-sand: #F5F1E8;
+  --color-studio-sand-subtle: #D8C9B3;
+  --color-studio-muted: #5C5850;
+  --color-studio-subtle: #8C867C;
+
+  --font-serif: var(--font-cormorant), "Times New Roman", Georgia, serif;
+  --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F5F1E8;
+  --foreground: #252525;
+  --font-cormorant: "Cormorant Garamond", Georgia, serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Natural editorial selection color */
+::selection {
+  background-color: #2F4A3A;
+  color: #F5F1E8;
+}
+
+/* Editorial typography utilities */
+.font-editorial-title {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+.font-editorial-sub {
+  font-family: var(--font-sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* Custom slim luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F1E8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(118, 91, 67, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(47, 74, 58, 0.45);
+}
+
+/* Paper grain subtle overlay */
+.grain-overlay {
+  position: relative;
+}
+
+.grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Image zoom on hover helper */
+.hover-scale-media {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-scale-media:hover {
+  transform: scale(1.03);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
