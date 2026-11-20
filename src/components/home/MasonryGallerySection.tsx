@@ -32,7 +32,7 @@ const FILTER_OPTIONS: FilterOption[] = [
 
 export function MasonryGallerySection() {
   const [activeFilter, setActiveFilter] = useState<FilterId>("all");
-  const [visibleCount, setVisibleCount] = useState<number>(12);
+  const [visibleCount, setVisibleCount] = useState<number>(18);
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number>(0);
   const galleryRef = useRef<HTMLDivElement>(null);

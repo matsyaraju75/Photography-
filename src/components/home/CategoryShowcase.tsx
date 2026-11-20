@@ -17,16 +17,16 @@ export function CategoryShowcase() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-earth/20">
           <div>
             <Badge variant="gold" className="mb-3">
-              Photography Disciplines
+              Photography Services & Disciplines
             </Badge>
             <TextReveal
-              text="Six Visual Worlds"
+              text="Our Photography Services"
               as="h2"
               className="font-serif text-3xl sm:text-5xl lg:text-6xl text-charcoal font-normal leading-tight block"
             />
           </div>
           <p className="text-xs sm:text-sm text-charcoal-muted max-w-md mt-4 md:mt-0 leading-relaxed font-sans">
-            From the laughter of childhood birthdays and wedding rituals to misty forest paths and Eastern Ghats wildlife.
+            Specialized photography services spanning wedding rituals, pre-wedding love stories, milestone birthday celebrations, sacred naming ceremonies, and the untouched nature and wildlife of the Eastern Ghats.
           </p>
         </div>
 
@@ -68,6 +68,9 @@ export function CategoryShowcase() {
                       <span className="font-sans uppercase tracking-[0.18em] text-[0.6875rem] bg-black/60 px-2.5 py-1 backdrop-blur-xs">
                         {cat.title}
                       </span>
+                      <span className="font-mono text-[0.6875rem] bg-black/60 px-2.5 py-1 backdrop-blur-xs text-sand-light">
+                        {cat.count} Photos
+                      </span>
                     </div>
                   </ParallaxImage>
                 </div>
@@ -101,7 +104,7 @@ export function CategoryShowcase() {
                       className="inline-flex items-center space-x-2.5 text-xs uppercase tracking-[0.18em] text-forest hover:text-forest-dark transition-colors font-medium group"
                     >
                       <span className="border-b border-forest/40 pb-1 group-hover:border-forest">
-                        Explore {cat.title}
+                        View {cat.title} Gallery ({cat.count} Photos)
                       </span>
                       <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform text-forest" />
                     </Link>

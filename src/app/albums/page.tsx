@@ -23,17 +23,17 @@ export default function AlbumsPage() {
     {
       title: "Cover & Spine Embossing",
       caption: "Handcrafted cover with deep blind debossing of your names, date, and venue.",
-      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1600&q=85",
+      image: "/images/weddings/ricky-and-micky-wedding.jpg",
     },
     {
       title: "Ceremony Opening Spread",
       caption: "180-degree seamless lay-flat opening allowing full-width panoramic wedding vistas without a center gap.",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=85",
+      image: "/images/weddings/bride-and-groom.webp",
     },
     {
       title: "Festive Banquet & Family Spread",
       caption: "Printed on heavy 250gsm fine-art matte paper that absorbs ambient room light and resists fingerprints.",
-      image: "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1600&q=85",
+      image: "/images/celebrations/celebrations-sparklers.jpg",
     },
   ];
 

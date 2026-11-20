@@ -21,8 +21,7 @@ export function HeroSection() {
   // Calming cinematic morning nature & celebration visuals
   const videoUrl =
     "https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-posing-in-nature-42171-large.mp4";
-  const posterUrl =
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=85";
+  const posterUrl = "/images/weddings/ricky-and-micky-wedding.jpg";
 
   useEffect(() => {
     if (prefersReducedMotion()) return;

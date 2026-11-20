@@ -17,17 +17,17 @@ export function AlbumDesignSection() {
     {
       title: "Handcrafted Cover & Embossing",
       caption: "Durable earth-tone leather with custom blind embossing of names and dates.",
-      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1600&q=85",
+      image: "/images/weddings/ricky-and-micky-wedding.jpg",
     },
     {
       title: "Ceremony Opening Spread",
       caption: "Lay-flat 180-degree panoramic spread without center seam or gutter distortion.",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=85",
+      image: "/images/weddings/bride-and-groom.webp",
     },
     {
       title: "Celebration & Family Spread",
       caption: "Heavy archival fine-art matte paper designed to last generations without fading.",
-      image: "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1600&q=85",
+      image: "/images/celebrations/celebrations-sparklers.jpg",
     },
   ];
 

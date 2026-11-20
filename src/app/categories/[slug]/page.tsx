@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { PhotoGrid } from "@/components/portfolio/PhotoGrid";
-import { CATEGORIES, FEATURED_STORIES, STUDIO_CONFIG } from "@/lib/constants";
+import { CATEGORIES, CURATED_GALLERY_PHOTOS, FEATURED_STORIES, STUDIO_CONFIG } from "@/lib/constants";
 import { PhotoAsset } from "@/types";
 import { ArrowLeft, ArrowRight, Camera, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
@@ -55,28 +55,32 @@ export default async function CategoryDetailPage({
     (story) => story.category === category.slug
   );
 
-  // Curate sample gallery photos for this category
-  const sampleGalleryPhotos: PhotoAsset[] = [
-    {
-      id: `${category.slug}-p1`,
-      url: category.coverImage,
-      alt: `${category.title} Frame 01`,
-      width: 1600,
-      height: 1067,
-      aspectRatio: "landscape",
-      exif: { camera: "Sony A7 IV", lens: "35mm f/1.4 GM", aperture: "f/1.8", shutterSpeed: "1/500s", iso: "100" },
-    },
-    {
-      id: `${category.slug}-p2`,
-      url: category.heroImage,
-      alt: `${category.title} Frame 02`,
-      width: 1200,
-      height: 1600,
-      aspectRatio: "portrait",
-      exif: { camera: "Sony A7 IV", lens: "85mm f/1.8", aperture: "f/2.0", shutterSpeed: "1/800s", iso: "200" },
-    },
-    ...categoryStories.flatMap((s) => [s.coverImage, ...s.chapters.flatMap((c) => c.photos)]),
-  ];
+  // Curate all authentic photos matching this category / service
+  const categoryGalleryPhotos = CURATED_GALLERY_PHOTOS.filter(
+    (photo) => photo.category === category.slug
+  );
+
+  const displayPhotos: PhotoAsset[] =
+    categoryGalleryPhotos.length > 0
+      ? categoryGalleryPhotos
+      : [
+          {
+            id: `${category.slug}-p1`,
+            url: category.coverImage,
+            alt: `${category.title} Frame 01`,
+            width: 1600,
+            height: 1067,
+            aspectRatio: "landscape",
+          },
+          {
+            id: `${category.slug}-p2`,
+            url: category.heroImage,
+            alt: `${category.title} Frame 02`,
+            width: 1200,
+            height: 1600,
+            aspectRatio: "portrait",
+          },
+        ];
 
   return (
     <div className="relative min-h-screen bg-cream text-charcoal pb-28">
@@ -186,11 +190,11 @@ export default async function CategoryDetailPage({
               </h2>
             </div>
             <span className="text-xs text-charcoal-muted font-mono mt-2 md:mt-0">
-              Showing Selected Highlights
+              Showing {displayPhotos.length} Curated {category.title} Photographs
             </span>
           </div>
 
-          <PhotoGrid photos={sampleGalleryPhotos} />
+          <PhotoGrid photos={displayPhotos} />
         </Container>
       </section>
 
