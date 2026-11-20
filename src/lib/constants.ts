@@ -559,7 +559,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Raju",
     role: "Lead Photographer & Founder",
     bio: "Passionate photographer from ASR District. Raju believes that photography is about feeling the moment rather than staging it. Whether documenting a wedding or tracking birds in the forest, he seeks simple honesty in every frame.",
-    portrait: "/images/nature/autumn-woods-landscape.jpg",
+    portrait: "/images/raju.jpeg",
     yearsOfExperience: 7,
     featuredGear: ["Sony A7 IV", "35mm f/1.4 GM", "85mm f/1.8", "70-200mm f/4 G"],
   },

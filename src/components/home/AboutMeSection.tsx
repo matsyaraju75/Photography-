@@ -18,7 +18,7 @@ export function AboutMeSection() {
           <div className="lg:col-span-5 flex justify-center">
             <Reveal delay={0.1} className="relative w-full max-w-sm sm:max-w-md">
               <ParallaxImage
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=85"
+                src="/images/raju.jpeg"
                 alt="Raju — Photographer from ASR District"
                 aspectRatio="aspect-[4/5]"
                 speed={0.1}
@@ -33,11 +33,6 @@ export function AboutMeSection() {
                   </p>
                 </div>
               </ParallaxImage>
-              <div className="mt-2 text-center">
-                <span className="text-[0.65rem] text-charcoal-muted tracking-wider">
-                  [REPLACE_WITH_REAL_PHOTOGRAPH]
-                </span>
-              </div>
             </Reveal>
           </div>
 

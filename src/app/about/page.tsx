@@ -39,7 +39,7 @@ export default function AboutPage() {
             {/* Portrait Frame */}
             <div className="lg:col-span-5 relative aspect-[4/5] w-full overflow-hidden bg-sand/30 border border-earth/25 shadow-xs">
               <Image
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=85"
+                src="/images/raju.jpeg"
                 alt="Raju, Photographer from ASR District"
                 fill
                 priority
